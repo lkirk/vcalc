@@ -73,24 +73,4 @@ value:
      INT { vc_value_t val; val.i = $<ival>1; $<node>$ = new_vc_value_node(VC_INT, val); }
      | FLOAT { vc_value_t val; val.i = $<ival>1; $<node>$ = new_vc_value_node(VC_FLOAT, val); }
      | STRING { $<node>$ = new_vc_variable_node($<sval>1, NULL); }
-
-/*
-line:
-    '\n'
-    | expression '\n'
-
-expressions: expressions expression
-           | expression
-*/
-
-/*
-expression: OPEN_PAREN expression CLOSE_PAREN
-          | INT { $<ival>$ = $<ival>1; printf("ival: %d\n", $<ival>$); }
-          | FLOAT { $<fval>$ = $<fval>1; printf("fval: %f\n", $<fval>$); }
-          | OPEN_BRACKET { puts("open bracket"); }
-          | CLOSE_BRACKET { puts("close bracket"); }
-          | UNKNOWN { $<sval>$ = $<sval>1; printf("Unknown token: %s\n", $<sval>$); }
-*/
-
-
 %%

@@ -3,37 +3,6 @@
 
 #include "ast.h"
 
-// int SYMBOL_TABLE[256] = {};
-
-// TODO: union type for ast nodes
-// does this work?????
-// typedef union {
-//   struct vc_ast_node *node;
-//   struct vc_value_node *value;
-// } * vc_ast_node_t;
-
-// typedef struct vc_ast_node {
-//   union {
-//     struct vc_ast_node *node;
-//     struct vc_value_node *value;
-//   } * left;
-//   union {
-//     struct vc_ast_node *node;
-//     struct vc_value_node *value;
-//   } * right;
-//   enum vc_node_type node_type;
-//   enum vc_op op_type;
-// } vc_ast_node_t;
-
-// typedef struct {
-//   enum vc_node_type type;
-//   union {
-//     struct vc_op_node *n;
-//     struct vc_value_node *v;
-//   } node;
-// } vc_ast_node_t;
-
-
 vc_ast_node_t *new_vc_op_node(enum vc_op op, vc_ast_node_t *left,
                               vc_ast_node_t *right) {
   vc_op_node_t *op_node = malloc(sizeof(vc_op_node_t));
@@ -80,33 +49,3 @@ void vc_node_print(vc_ast_node_t *ast) {
     printf("variable:\n");
   }
 }
-
-// vc_ast_node_t *new_vc_ast_node(enum vc_node_type type, vc_ast_node_t *left,
-//                                vc_ast_node_t *right) {
-//   vc_ast_node_t *node = (vc_ast_node_t *)malloc(sizeof(vc_ast_node_t));
-//   node->type = type;
-//   node->left = left;
-//   node->right = right;
-//   return node;
-// }
-
-// vc_ast_node_t ast_node = (vc_ast_node_t *)malloc(sizeof(vc_ast_node_t));
-// ast_node->
-
-// vc_ast_node_t *
-// new_vc_ast_node(enum vc_op op, vc_ast_node_t *left, vc_ast_node_t *right) {
-//   vc_ast_node_t *node = (vc_ast_node_t *)malloc(sizeof(vc_ast_node_t));
-//   node->node_type = op;
-//   node->left = left;
-//   node->right = right;
-//   return node;
-// }
-//
-// vc_ast_node_t *new_vc_ast_node(enum vc_op op, vc_ast_node_t *left,
-//                                vc_ast_node_t *right) {
-//   vc_ast_node_t *node = (vc_ast_node_t *)malloc(sizeof(vc_ast_node_t));
-//   node->node_type = op;
-//   node->left = left;
-//   node->right = right;
-//   return node;
-// }
