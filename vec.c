@@ -73,25 +73,70 @@ const char *__vc_type_to_format_str(char *type) {
     printf("}\n");                                                             \
   }
 
-typedef struct vc_array_idx_t {
-  size_t loc[MAX_ARRAY_DIM];
-  size_t current_dim;
-  size_t current_item;
-} vc_array_idx_t;
+// // TODO: think about idx structure
+// typedef struct vc_array_idx_t {
+//   size_t dim;
+//   size_t dim_end;
+//   size_t item;
+//   size_t item_end;
+// } vc_array_idx_t;
 
 //#define __VC_ARRAY_VIEW()
 
 //#define __VC_ARRAY_INIT_ITER(type)
 
+/*
 #define __VC_ARRAY_ITER(type)                                                  \
-  type vc_vec_iter##type(VC_ARRAY_TYPE(type) * arr, vc_array_idx_t * idx) {    \
-    size_t cd = idx->current_dim
+    type vc_vec_iter##type(VC_ARRAY_TYPE(type) * arr, vc_array_idx_t * idx) { \
+*/
+/*
+// TODO: fix logic!
+#define __VC_ARRAY_ITER(type)                                                  \
+  void vc_vec_iter_##type(VC_ARRAY_TYPE(type) * arr) {                         \
+    size_t curr_idx = 0;                                                       \
+    size_t curr_dim = 0;                                                       \
+    size_t curr_lim = arr->dims[curr_dim];                                     \
+    while (1) {                                                                \
+      printf("curr_dim:%zu\tcurr_idx:%zu\n", curr_dim, curr_idx);              \
+      if ((curr_idx + 1) == curr_lim && curr_dim + 1 == arr->ndims) {          \
+        break;                                                                 \
+      } else if ((curr_idx + 1) == curr_lim) {                                 \
+        curr_dim++;                                                            \
+        curr_idx = 0;                                                          \
+        curr_lim = arr->dims[curr_dim];                                        \
+      } else {                                                                 \
+        curr_idx++;                                                            \
+      }                                                                        \
+    }                                                                          \
+  }
+*/
 
+//#define __VC_ARRAY_ITER(type)                                                  \
+//  void vc_vec_iter_##type(VC_ARRAY_TYPE(type) * arr) {                         \
+//    size_t dims[MAX_ARRAY_DIM];                                                \
+//    memccpy(dims, arr->dims, arr->ndims, arr->itemsize);                       \
+//    for (size_t i = 0; i < arr->ndims; i++) {                                  \
+//
+//    }                                                                          \
+//  }
+
+// https://gist.github.com/kbarbary/9efb3650f1b69b2b6b18e34ad347777b
+
+// #define __VC_ARRAY_ITER(type)                                                  \
+//   void vc_vec_iter_##type(VC_ARRAY_TYPE(type) * arr) {                         \
+//     size_t dim_inc = arr->ndims - 1;                                           \
+//     for (size_t idx = 0; idx < arr->len; i++) {                                \
+//            print (                                                             \
+//     }
+
+// #define __VC_ARRAY_CHUNK(array, axis, chunk_size)                              \
+//     for (i
 
 #define __VC_ARRAY_GEN_METHODS(type)                                           \
   __VC_ARRAY_TYPEDEF(type)                                                     \
   __VC_ARRAY_NEW(type)                                                         \
-  __VC_ARRAY_PRINT(type)
+  __VC_ARRAY_PRINT(type)                                                       \
+  //  __VC_ARRAY_ITER(type)
 
 __VC_ARRAY_GEN_METHODS(uint64_t)
 __VC_ARRAY_GEN_METHODS(float)
@@ -108,4 +153,5 @@ int main() {
   double *data = calloc(arr->len, arr->itemsize);
   arr->data = &data;
   vc_vec_print_double(arr);
+  // vc_vec_iter_double(arr);
 }
