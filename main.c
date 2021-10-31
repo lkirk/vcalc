@@ -1,8 +1,11 @@
 #include "ast.h"
 #include "parser.h"
+#include "khash.h"
 
-int main(int argc, char **argv) {
-  (void)argc;
-  (void)argv;
-  yyparse();
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+  vc_scope_t *global_scope = vc_scope_init();
+  yyparse(global_scope);
 }

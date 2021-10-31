@@ -42,6 +42,22 @@ vc_ast_node_t *new_vc_variable_node(const char *name, vc_value_node_t *value) {
   return node;
 }
 
+vc_scope_t *vc_scope_init() { return kh_init(str_to_vc_value); }
+
+void vc_scope_put(vc_scope_t *scope, const char *key, vc_value_node_t *val) {
+  int ret;
+  khint_t k = kh_put_str_to_vc_value(scope, key, &ret);
+  kh_val(scope, k) = *val;
+}
+
+vc_value_node_t *vc_scope_get(vc_scope_t *scope, const char *key) {
+  khint_t k = kh_get_str_to_vc_value(scope, key);
+  if (k == kh_end(scope)) { // value is missing
+    return NULL;
+  }
+  return &(kh_val(scope, k));
+}
+
 void vc_node_print(vc_ast_node_t *ast) {
   if (ast->type == VC_VALUE_NODE) {
     printf("value:\n");

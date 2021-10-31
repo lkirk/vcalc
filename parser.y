@@ -9,6 +9,9 @@ extern int yylex();
 
 %define parse.error verbose
 
+%parse-param {vc_scope_t *scope}
+
+
 %union
 {
     int ival;
