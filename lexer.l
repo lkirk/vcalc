@@ -34,6 +34,12 @@ close_paren \)
     return INT;
 }
 
+<str>\" /* eat string characters */
+<str>\" {
+    yylval.sval = yytext;
+    return STRING;
+}
+
 {anum} {
     yylval.sval = yytext;
     return STRING;
