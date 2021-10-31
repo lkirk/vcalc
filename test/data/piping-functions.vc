@@ -1,0 +1,5 @@
+# TODO: should piping be implemented?
+func do_func(arr, b, c) {
+    return a + b + c
+}
+a = (range(10) + 3 - 4) | do_func(23, 4)
