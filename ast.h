@@ -5,7 +5,7 @@
 #include "khash.h"
 
 enum vc_op { VC_ADD, VC_SUB, VC_DIV, VC_MULT, VC_EXP };
-enum vc_value { VC_INT, VC_FLOAT };
+enum vc_value { VC_INT, VC_FLOAT, VC_STR };
 enum vc_node_type { VC_VALUE_NODE, VC_OP_NODE, VC_VAR_NODE };
 
 typedef struct vc_ast_node {
