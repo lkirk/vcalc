@@ -19,6 +19,9 @@ make
 * https://github.com/lkirk/vcfql/blob/master/src/parser.y
 * https://www.gnu.org/software/bison/manual/bison.html#Concepts
 * https://github.com/simd-everywhere/simde
+Very clean parser:
+* http://www.quut.com/c/ANSI-C-grammar-y.html
+* http://www.quut.com/c/ANSI-C-grammar-l-2011.html
 
 ### abstract syntax trees
 * https://lloydrochester.com/post/flex-bison/json-parse-ast/
